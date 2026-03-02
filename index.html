@@ -342,7 +342,7 @@
 
   <form
     id="mainForm"
-    action="https://formspree.io/f/TU_ID_DE_FORMSPREE"
+    action="https://formspree.io/f/mykdqwja"
     method="POST"
   >
 
@@ -453,11 +453,6 @@
           <option>Otro</option>
         </select>
       </div>
-
-      <div class="field">
-        <label>¿A quién va dirigido tu negocio? <span class="req">*</span></label>
-        <textarea name="publico" placeholder="Ej: Mujeres de 25 a 45 años que buscan tratamientos de belleza en Madrid..."></textarea>
-      </div>
     </div>
 
     <hr class="divider">
@@ -470,18 +465,12 @@
 
       <div class="field">
         <label>Frase principal — título hero <span class="req">*</span></label>
-        <input type="text" name="titulo_hero" placeholder="Ej: Transforma tu piel con los mejores tratamientos" required>
-        <p class="hint">Lo primero que verá tu cliente. Hazlo directo y atractivo.</p>
+        <input type="text" name="titulo_hero" placeholder="Ej: Transforma tu negocio con diseño pro" required>
       </div>
 
       <div class="field">
-        <label>¿Qué servicios o productos ofreces? <span class="req">*</span></label>
-        <textarea name="servicios" style="min-height: 110px;" placeholder="Un servicio por línea" required></textarea>
-      </div>
-
-      <div class="field">
-        <label>Sobre ti o tu negocio</label>
-        <textarea name="sobre_ti" placeholder="Tu historia, experiencia..."></textarea>
+        <label>¿Qué servicios ofreces? <span class="req">*</span></label>
+        <textarea name="servicios" style="min-height: 110px;" placeholder="Describe tus servicios..." required></textarea>
       </div>
     </div>
 
@@ -493,25 +482,25 @@
         <div class="step-title">Estilo de diseño</div>
       </div>
 
-      <div class="field">
-        <div class="style-grid">
-          <div class="style-card">
-            <input type="radio" name="estilo" id="s1" value="Minimalista">
-            <label for="s1">
-              <div class="style-preview minimal">Clean & Simple</div>
-              <div class="style-meta"><div class="style-name">Minimalista</div></div>
-            </label>
-          </div>
-          <div class="style-card">
-            <input type="radio" name="estilo" id="s2" value="Moderno Bold">
-            <label for="s2">
-              <div class="style-preview bold">BOLD & STRONG</div>
-              <div class="style-meta"><div class="style-name">Moderno & Bold</div></div>
-            </label>
-          </div>
+      <div class="style-grid">
+        <div class="style-card">
+          <input type="radio" name="estilo" id="s1" value="Minimalista">
+          <label for="s1">
+            <div class="style-preview minimal">Clean & Simple</div>
+            <div class="style-meta"><div class="style-name">Minimalista</div></div>
+          </label>
+        </div>
+        <div class="style-card">
+          <input type="radio" name="estilo" id="s2" value="Moderno Bold">
+          <label for="s2">
+            <div class="style-preview bold">BOLD & STRONG</div>
+            <div class="style-meta"><div class="style-name">Moderno & Bold</div></div>
+          </label>
         </div>
       </div>
     </div>
+
+    <hr class="divider">
 
     <div class="submit-area">
       <h3>¡Todo listo! 🚀</h3>
@@ -526,7 +515,7 @@
       <div class="gdpr-check">
         <label class="gdpr-label">
           <input type="checkbox" name="acepta_datos" required>
-          <span>Acepto el tratamiento de mis datos personales por DigiWeb.</span>
+          <span>Acepto el tratamiento de mis datos por DigiWeb.</span>
         </label>
       </div>
 
@@ -559,7 +548,7 @@
     });
   });
 
-  // Manejo de Formspree sin recargar la página
+  // AJAX para enviar sin recargar la página
   const form = document.getElementById('mainForm');
   form.addEventListener('submit', function(e) {
     e.preventDefault();
