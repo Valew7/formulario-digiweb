@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DigiWeb — Inicia tu proyecto web</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0e0e0e;
+    --surface: #161616;
+    --surface2: #1e1e1e;
+    --border: #2a2a2a;
+    --accent: #c8f542;
+    --text: #f0f0f0;
+    --muted: #777;
+    --muted2: #555;
+    --radius: 12px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+    padding: 48px 20px 100px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container { max-width: 680px; margin: 0 auto; }
+
+  .header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    letter-spacing: 1px;
+    color: var(--accent);
+    margin-bottom: 28px;
+    display: block;
+  }
+
+  .badge {
+    display: inline-block;
+    background: var(--accent);
+    color: #0e0e0e;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 100px;
+    margin-bottom: 22px;
+  }
+
+  .header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 6vw, 3.4rem);
+    line-height: 1.1;
+    margin-bottom: 14px;
+    color: var(--text);
+    font-weight: 700;
+  }
+
+  .header h1 em { font-style: italic; color: var(--accent); }
+
+  .header p {
+    color: var(--muted);
+    font-size: 15px;
+    line-height: 1.7;
+    font-weight: 300;
+    max-width: 440px;
+    margin: 0 auto;
+  }
+
+  .tiktok-btn {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px 20px;
+    margin-bottom: 48px;
+    text-decoration: none;
+    transition: border-color 0.2s, transform 0.15s;
+    cursor: pointer;
+  }
+
+  .tiktok-btn:hover { border-color: #444; transform: translateY(-1px); }
+
+  .tk-logo {
+    width: 40px; height: 40px;
+    background: #000;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    position: relative; overflow: hidden;
+  }
+
+  .tk-logo::before {
+    content: '';
+    position: absolute;
+    width: 14px; height: 17px;
+    background: #69c9d0;
+    border-radius: 4px;
+    left: 7px; top: 6px;
+  }
+  .tk-logo::after {
+    content: '';
+    position: absolute;
+    width: 14px; height: 17px;
+    background: #ee1d52;
+    border-radius: 4px;
+    left: 11px; top: 6px;
+    opacity: 0.85;
+  }
+  .tk-note {
+    width: 13px; height: 16px;
+    background: white;
+    border-radius: 3px;
+    position: absolute;
+    left: 9px; top: 7px;
+    z-index: 2;
+  }
+
+  .tk-info { flex: 1; }
+  .tk-info strong { display: block; font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 3px; }
+  .tk-info span { font-size: 12px; color: var(--muted); font-weight: 300; }
+
+  .tk-stats { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; }
+  .tk-stat { font-size: 11px; color: var(--muted2); white-space: nowrap; }
+  .tk-stat strong { color: var(--accent); font-size: 13px; }
+
+  .step { margin-bottom: 52px; }
+
+  .step-label { display: flex; align-items: center; gap: 12px; margin-bottom: 28px; }
+
+  .step-num {
+    width: 34px; height: 34px;
+    background: var(--accent);
+    color: #0e0e0e;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 13px;
+    flex-shrink: 0;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .step-title { font-family: 'Playfair Display', serif; font-size: 20px; color: var(--text); font-weight: 400; }
+
+  .divider { border: none; border-top: 1px solid var(--border); margin: 0 0 52px; }
+
+  .field { margin-bottom: 18px; }
+
+  .field > label {
+    display: block;
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 9px;
+  }
+
+  .field > label .req { color: var(--accent); margin-left: 3px; }
+  .hint { font-size: 12px; color: var(--muted2); margin-top: 7px; line-height: 1.5; font-weight: 300; }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  textarea,
+  select {
+    width: 100%;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px; font-weight: 300;
+    padding: 14px 18px;
+    outline: none; appearance: none; -webkit-appearance: none;
+    transition: border-color 0.2s;
+  }
+
+  input:focus, textarea:focus, select:focus { border-color: var(--accent); }
+  input::placeholder, textarea::placeholder { color: var(--muted2); font-weight: 300; }
+  textarea { min-height: 96px; resize: vertical; line-height: 1.6; }
+
+  select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23777' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    padding-right: 42px;
+  }
+  select option { background: #1a1a1a; }
+
+  .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media (max-width: 520px) { .row2 { grid-template-columns: 1fr; } }
+
+  .plan-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  @media (max-width: 480px) { .plan-grid { grid-template-columns: 1fr; } }
+
+  .plan-card input[type="radio"] { display: none; }
+
+  .plan-card label {
+    display: block;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    cursor: pointer;
+    transition: border-color 0.2s, transform 0.15s;
+    text-transform: none; letter-spacing: 0;
+  }
+
+  .plan-card label:hover { border-color: #444; transform: translateY(-2px); }
+  .plan-card input:checked + label { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+
+  .plan-preview {
+    height: 90px;
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 6px;
+    position: relative; overflow: hidden;
+  }
+
+  .plan-preview.landing { background: linear-gradient(135deg, #0f0f0f 0%, #1a1a2e 100%); }
+  .plan-preview.landing::before { content: ''; position: absolute; width: 60%; height: 3px; background: var(--accent); border-radius: 2px; top: 28px; }
+  .plan-preview.landing::after { content: ''; position: absolute; width: 40%; height: 3px; background: #333; border-radius: 2px; top: 40px; }
+  .plan-preview.landing .preview-btn { position: absolute; bottom: 18px; background: var(--accent); color: #0e0e0e; font-size: 9px; font-weight: 700; padding: 4px 10px; border-radius: 4px; letter-spacing: 0.5px; text-transform: uppercase; }
+
+  .plan-preview.corporativa { background: linear-gradient(135deg, #1a1a1a 0%, #0d1117 100%); display: grid; grid-template-columns: 1fr 2fr; gap: 6px; padding: 12px; align-items: start; }
+  .corp-sidebar { display: flex; flex-direction: column; gap: 5px; }
+  .corp-line { height: 5px; background: #2a2a2a; border-radius: 2px; }
+  .corp-line.active { background: var(--accent); width: 70%; }
+  .corp-content { display: flex; flex-direction: column; gap: 5px; }
+  .corp-bar { height: 5px; background: #2a2a2a; border-radius: 2px; }
+  .corp-bar:first-child { width: 80%; }
+  .corp-bar:nth-child(2) { width: 60%; background: #333; }
+  .corp-bar:nth-child(3) { width: 90%; }
+  .corp-bar:nth-child(4) { width: 50%; }
+
+  .plan-info-box { padding: 14px 16px; background: var(--surface); }
+  .plan-card input:checked + label .plan-info-box { background: #1a1f0a; }
+  .plan-name-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
+  .plan-name { font-size: 14px; font-weight: 600; color: var(--text); }
+  .plan-price { font-family: 'Playfair Display', serif; font-size: 18px; color: var(--accent); }
+  .plan-features { font-size: 11px; color: var(--muted); font-weight: 300; line-height: 1.6; }
+
+  .style-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  @media (max-width: 480px) { .style-grid { grid-template-columns: 1fr 1fr; } }
+
+  .style-card input[type="radio"] { display: none; }
+  .style-card label { text-transform: none; letter-spacing: 0; cursor: pointer; display: block; border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; transition: border-color 0.2s, transform 0.15s; }
+  .style-card label:hover { border-color: #555; transform: translateY(-2px); }
+  .style-card input:checked + label { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+
+  .style-preview { height: 90px; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 500; }
+  .style-preview.minimal { background: #f5f5f0; color: #111; font-family: Georgia, serif; font-style: italic; }
+  .style-preview.bold { background: #0a0a0a; color: var(--accent); font-weight: 800; font-size: 15px; letter-spacing: -0.5px; text-transform: uppercase; }
+  .style-preview.colorful { background: linear-gradient(135deg, #ff6b6b, #ffd93d, #6bcb77); color: white; font-weight: 700; }
+  .style-preview.elegant { background: #1a1229; color: #e8d5b7; font-family: Georgia, serif; font-style: italic; }
+  .style-preview.modern { background: linear-gradient(135deg, #667eea, #764ba2); color: white; font-weight: 600; }
+
+  .style-meta { padding: 10px 14px 12px; background: var(--surface); }
+  .style-name { font-size: 13px; font-weight: 600; color: var(--text); }
+  .style-desc { font-size: 11px; color: var(--muted); margin-top: 2px; font-weight: 300; }
+
+  .drive-zone { display: block; border: 1px dashed var(--border); border-radius: var(--radius); padding: 28px 20px; text-align: center; cursor: pointer; transition: border-color 0.2s, background 0.2s, transform 0.15s; text-decoration: none; }
+  .drive-zone:hover { border-color: var(--accent); background: var(--surface); transform: translateY(-2px); }
+  .drive-zone .up-icon { font-size: 28px; margin-bottom: 8px; }
+  .drive-zone strong { display: block; font-size: 14px; color: var(--text); margin-bottom: 6px; }
+  .drive-zone p { font-size: 12px; color: var(--muted); font-weight: 300; line-height: 1.6; }
+  .drive-badge { display: inline-block; margin-top: 12px; background: var(--accent); color: #0e0e0e; font-size: 11px; font-weight: 700; padding: 6px 16px; border-radius: 20px; letter-spacing: 0.5px; }
+
+  .wise-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; display: flex; align-items: center; gap: 16px; }
+  .wise-logo { width: 48px; height: 48px; background: #9fe870; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 18px; color: #163300; flex-shrink: 0; font-family: 'DM Sans', sans-serif; letter-spacing: -1px; }
+  .wise-info { flex: 1; }
+  .wise-info strong { display: block; font-size: 15px; color: var(--text); margin-bottom: 4px; }
+  .wise-info p { font-size: 12px; color: var(--muted); font-weight: 300; line-height: 1.5; }
+  .wise-badge { background: rgba(200,245,66,0.12); border: 1px solid rgba(200,245,66,0.3); color: var(--accent); font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 4px 10px; border-radius: 20px; white-space: nowrap; }
+
+  .gdpr-check { margin-bottom: 20px; }
+  .gdpr-label { display: flex; gap: 12px; align-items: flex-start; cursor: pointer; }
+  .gdpr-label input[type="checkbox"] { width: 18px; height: 18px; min-width: 18px; accent-color: var(--accent); margin-top: 2px; cursor: pointer; }
+  .gdpr-label span { font-size: 12px; color: var(--muted); font-weight: 300; line-height: 1.6; }
+  .gdpr-label a { color: var(--accent); text-decoration: underline; }
+
+  .submit-area { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 32px; text-align: center; }
+  .submit-area h3 { font-family: 'Playfair Display', serif; font-size: 26px; margin-bottom: 8px; font-weight: 400; }
+  .submit-area > p { color: var(--muted); font-size: 14px; margin-bottom: 24px; font-weight: 300; }
+
+  .price-display { margin-bottom: 24px; }
+  .price-num { font-family: 'Playfair Display', serif; font-size: 52px; color: var(--accent); line-height: 1; display: block; }
+  .price-plan-name { font-size: 13px; color: var(--muted); margin-top: 4px; display: block; }
+  .price-split-note { display: inline-block; margin-top: 8px; font-size: 12px; color: var(--muted2); background: var(--surface2); padding: 5px 14px; border-radius: 20px; }
+
+  .btn-submit { width: 100%; background: var(--accent); color: #0e0e0e; border: none; border-radius: 10px; font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 700; padding: 18px; cursor: pointer; letter-spacing: 0.3px; transition: opacity 0.2s, transform 0.1s; margin-top: 8px; }
+  .btn-submit:hover { opacity: 0.9; transform: translateY(-1px); }
+  .btn-submit:active { transform: translateY(0); }
+
+  .success-msg { display: none; text-align: center; padding: 60px 20px; }
+  .success-msg .checkmark { font-size: 56px; margin-bottom: 20px; display: block; }
+  .success-msg h3 { font-family: 'Playfair Display', serif; font-size: 2.2rem; margin-bottom: 14px; font-weight: 400; }
+  .success-msg p { color: var(--muted); font-size: 15px; line-height: 1.8; font-weight: 300; max-width: 400px; margin: 0 auto; }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  .container { animation: fadeUp 0.5s ease both; }
+  .step { animation: fadeUp 0.5s ease both; }
+  .step:nth-child(2) { animation-delay: 0.05s; }
+  .step:nth-child(3) { animation-delay: 0.1s; }
+  .step:nth-child(4) { animation-delay: 0.15s; }
+  .step:nth-child(5) { animation-delay: 0.2s; }
+  .step:nth-child(6) { animation-delay: 0.25s; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <span class="logo">DigiWeb.</span>
+    <div class="badge">✦ Formulario de proyecto</div>
+    <h1>Tu negocio merece<br>una web <em>que venda.</em></h1>
+    <p>Sin procesos largos, lista en 3–5 días.</p>
+  </div>
+
+  <a class="tiktok-btn" href="https://www.tiktok.com/@digiweb_co" target="_blank" rel="noopener">
+    <div class="tk-logo"><div class="tk-note"></div></div>
+    <div class="tk-info">
+      <strong>Mira nuestro trabajo en TikTok</strong>
+      <span>@digiweb_co · Proyectos reales, resultados reales</span>
+    </div>
+    <div class="tk-stats">
+      <div class="tk-stat"><strong>10K</strong> likes</div>
+      <div class="tk-stat"><strong>+460</strong> seguidores</div>
+    </div>
+  </a>
+
+  <!-- ✅ NETLIFY: name + data-netlify="true" + netlify-honeypot -->
+  <form
+    id="mainForm"
+    name="digiweb-proyecto"
+    method="POST"
+    data-netlify="true"
+    netlify-honeypot="bot-field"
+    enctype="multipart/form-data"
+  >
+
+    <!-- Campo oculto OBLIGATORIO para Netlify -->
+    <input type="hidden" name="form-name" value="digiweb-proyecto">
+
+    <!-- Honeypot anti-spam (oculto) -->
+    <p style="display:none">
+      <label>No llenar: <input name="bot-field"></label>
+    </p>
+
+    <!-- PASO 1: PLAN -->
+    <div class="step">
+      <div class="step-label">
+        <div class="step-num">1</div>
+        <div class="step-title">Elige tu plan</div>
+      </div>
+
+      <div class="plan-grid">
+        <div class="plan-card">
+          <input type="radio" name="plan" id="plan1" value="Landing Page — 350€" required>
+          <label for="plan1">
+            <div class="plan-preview landing">
+              <div class="preview-btn">Contratar</div>
+            </div>
+            <div class="plan-info-box">
+              <div class="plan-name-row">
+                <span class="plan-name">Landing Page</span>
+                <span class="plan-price">350€</span>
+              </div>
+              <div class="plan-features">
+                1 página · Entrega 3–5 días<br>
+                SEO básico · botón WhatsApp integrado <br>
+                2 rondas de cambios incluidas
+              </div>
+            </div>
+          </label>
+        </div>
+
+        <div class="plan-card">
+          <input type="radio" name="plan" id="plan2" value="Web Corporativa — 500€">
+          <label for="plan2">
+            <div class="plan-preview corporativa">
+              <div class="corp-sidebar">
+                <div class="corp-line active"></div>
+                <div class="corp-line"></div>
+                <div class="corp-line"></div>
+                <div class="corp-line"></div>
+              </div>
+              <div class="corp-content">
+                <div class="corp-bar"></div>
+                <div class="corp-bar"></div>
+                <div class="corp-bar"></div>
+                <div class="corp-bar"></div>
+              </div>
+            </div>
+            <div class="plan-info-box">
+              <div class="plan-name-row">
+                <span class="plan-name">Web Corporativa</span>
+                <span class="plan-price">570€</span>
+              </div>
+              <div class="plan-features">
+                5–8 páginas · Blog incluido<br>
+                SEO optimizado · Formulario - botón Whatsapp<br>
+                2 rondas de cambios incluidas
+              </div>
+            </div>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- PASO 2: DATOS -->
+    <div class="step">
+      <div class="step-label">
+        <div class="step-num">2</div>
+        <div class="step-title">Datos de tu negocio</div>
+      </div>
+
+      <div class="row2">
+        <div class="field">
+          <label>Tu nombre <span class="req">*</span></label>
+          <input type="text" name="nombre" placeholder="María García" required>
+        </div>
+        <div class="field">
+          <label>Nombre del negocio <span class="req">*</span></label>
+          <input type="text" name="negocio" placeholder="Estética Luna" required>
+        </div>
+      </div>
+
+      <div class="row2">
+        <div class="field">
+          <label>WhatsApp <span class="req">*</span></label>
+          <input type="tel" name="whatsapp" placeholder="+34 600 000 000" required>
+        </div>
+        <div class="field">
+          <label>Email</label>
+          <input type="email" name="email" placeholder="hola@tunegocio.com">
+        </div>
+      </div>
+
+      <div class="field">
+        <label>¿A qué se dedica tu negocio? <span class="req">*</span></label>
+        <select name="categoria" required>
+          <option value="">Selecciona una categoría...</option>
+          <option>Belleza & Estética</option>
+          <option>Restaurante / Cafetería</option>
+          <option>Servicios profesionales</option>
+          <option>Tienda / Comercio</option>
+          <option>Salud & Bienestar</option>
+          <option>Fitness / Deporte</option>
+          <option>Taller / Carpintería</option>
+          <option>Abogados / Legal</option>
+          <option>Inmobiliaria</option>
+          <option>Fotografía / Arte</option>
+          <option>Otro</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>¿A quién va dirigido tu negocio? <span class="req">*</span></label>
+        <textarea name="publico" placeholder="Ej: Mujeres de 25 a 45 años que buscan tratamientos de belleza en Madrid..."></textarea>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- PASO 3: CONTENIDO -->
+    <div class="step">
+      <div class="step-label">
+        <div class="step-num">3</div>
+        <div class="step-title">Contenido de tu página</div>
+      </div>
+
+      <div class="field">
+        <label>Frase principal — título hero <span class="req">*</span></label>
+        <input type="text" name="titulo_hero" placeholder="Ej: Transforma tu piel con los mejores tratamientos" required>
+        <p class="hint">Lo primero que verá tu cliente. Hazlo directo y atractivo.</p>
+      </div>
+
+      <div class="field">
+        <label>¿Qué servicios o productos ofreces? <span class="req">*</span></label>
+        <textarea name="servicios" style="min-height: 110px;" placeholder="Un servicio por línea:&#10;- Limpieza facial profunda&#10;- Tratamiento anti-edad&#10;- Masaje relajante" required></textarea>
+      </div>
+
+      <div class="field">
+        <label>Sobre ti o tu negocio</label>
+        <textarea name="sobre_ti" placeholder="Tu historia, experiencia, por qué elegirte, garantías..."></textarea>
+      </div>
+
+      <div class="field">
+        <label>Redes sociales o web actual</label>
+        <input type="text" name="redes" placeholder="@tunegocio en Instagram / www.tunegocio.com">
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- PASO 4: FOTOS -->
+    <div class="step">
+      <div class="step-label">
+        <div class="step-num">4</div>
+        <div class="step-title">Fotos e imágenes</div>
+      </div>
+
+      <div class="field">
+        <a class="drive-zone" href="https://drive.google.com/drive/folders/134hfFOx0eVe33LChsVduhS7WLdUdDqho?usp=sharing" target="_blank" rel="noopener">
+          <div class="up-icon">📁</div>
+          <strong>Subir fotos al Google Drive (crear carpeta con nombre de tu negocio)</strong>
+          <p>Haz clic aquí · Sube logo, fotos del negocio, de ti o tus servicios<br>JPG, PNG — cualquier tamaño</p>
+          <div class="drive-badge">Abrir Drive →</div>
+        </a>
+        <p class="hint">⚠️ Si no tienes fotos aún, indícalo abajo y usaré imágenes profesionales gratuitas.</p>
+      </div>
+
+      <div class="field">
+        <label>¿Sin fotos? Describe qué imágenes necesitas</label>
+        <textarea name="descripcion_imagenes" placeholder="Ej: Clínica moderna, mujer recibiendo masaje, ambiente relajante y luminoso..."></textarea>
+      </div>
+
+      <div class="field">
+        <label>Colores de tu marca</label>
+        <input type="text" name="colores" placeholder="Ej: Rosa nude y dorado / Azul marino y blanco...">
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- PASO 5: ESTILO -->
+    <div class="step">
+      <div class="step-label">
+        <div class="step-num">5</div>
+        <div class="step-title">Estilo de diseño</div>
+      </div>
+
+      <div class="field">
+        <div class="style-grid">
+          <div class="style-card">
+            <input type="radio" name="estilo" id="s1" value="Minimalista">
+            <label for="s1">
+              <div class="style-preview minimal">Clean & Simple</div>
+              <div class="style-meta">
+                <div class="style-name">Minimalista</div>
+                <div class="style-desc">Elegante, limpio, espacio en blanco</div>
+              </div>
+            </label>
+          </div>
+
+          <div class="style-card">
+            <input type="radio" name="estilo" id="s2" value="Moderno Bold">
+            <label for="s2">
+              <div class="style-preview bold">BOLD & STRONG</div>
+              <div class="style-meta">
+                <div class="style-name">Moderno & Bold</div>
+                <div class="style-desc">Tipografía grande, oscuro, impactante</div>
+              </div>
+            </label>
+          </div>
+
+          <div class="style-card">
+            <input type="radio" name="estilo" id="s3" value="Colorido Vibrante">
+            <label for="s3">
+              <div class="style-preview colorful">Vibrant & Fun</div>
+              <div class="style-meta">
+                <div class="style-name">Colorido & Vibrante</div>
+                <div class="style-desc">Alegre, lleno de color, juvenil</div>
+              </div>
+            </label>
+          </div>
+
+          <div class="style-card">
+            <input type="radio" name="estilo" id="s4" value="Elegante Lujoso">
+            <label for="s4">
+              <div class="style-preview elegant">Luxury Feel</div>
+              <div class="style-meta">
+                <div class="style-name">Elegante & Lujoso</div>
+                <div class="style-desc">Oscuro, sofisticado, premium</div>
+              </div>
+            </label>
+          </div>
+
+          <div class="style-card">
+            <input type="radio" name="estilo" id="s5" value="Degradado Moderno">
+            <label for="s5">
+              <div class="style-preview modern">Modern Gradient</div>
+              <div class="style-meta">
+                <div class="style-name">Degradado Moderno</div>
+                <div class="style-desc">Gradientes suaves, fresco, tech</div>
+              </div>
+            </label>
+          </div>
+        </div>
+        <p class="hint" style="margin-top:12px;">¿Tienes una web de referencia que te guste? Compártela abajo.</p>
+      </div>
+
+      <div class="field">
+        <label>Web de referencia o inspiración</label>
+        <input type="text" name="referencia" placeholder="Ej: www.ejemplo.com — me gusta su estilo y colores...">
+      </div>
+
+      <div class="field">
+        <label>Notas adicionales</label>
+        <textarea name="notas" placeholder="Cualquier detalle, duda o pedido especial para tu proyecto..."></textarea>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- PASO 6: PAGO -->
+    <div class="step">
+      <div class="step-label">
+        <div class="step-num">6</div>
+        <div class="step-title">Método de pago</div>
+      </div>
+
+      <p style="color:var(--muted); font-size:14px; font-weight:300; margin-bottom:18px; line-height:1.6;">
+        El proyecto se paga en 2 partes: <strong style="color:var(--text); font-weight:600;">50% para iniciar</strong> y <strong style="color:var(--text); font-weight:600;">50% al entregar.</strong><br>
+        Los datos de pago te los envío por WhatsApp al confirmar.
+      </p>
+
+      <div class="wise-card">
+        <div class="wise-logo">W</div>
+        <div class="wise-info">
+          <strong>Wise (TransferWise)</strong>
+          <p>Transferencia internacional en euros · Comisiones mínimas · Llega en 1–2 días · Muy popular en España y Europa</p>
+        </div>
+        <div class="wise-badge">Recomendado</div>
+      </div>
+
+      <p class="hint" style="margin-top:12px;">¿Prefieres otro método? Indícalo en las notas o escríbeme directamente por WhatsApp.</p>
+    </div>
+
+    <!-- SUBMIT -->
+    <div class="submit-area">
+      <h3>¡Todo listo! 🚀</h3>
+      <p>Te confirmo por WhatsApp en menos de 24 horas.</p>
+
+      <div class="price-display">
+        <span class="price-num" id="priceDisplay">350€</span>
+        <span class="price-plan-name" id="planDisplay">Landing Page</span>
+        <span class="price-split-note" id="splitDisplay">Inicio: 175€ · Entrega: 175€</span>
+      </div>
+
+      <div class="gdpr-check">
+        <label class="gdpr-label">
+          <input type="checkbox" name="acepta_datos" required>
+          <span>He leído y acepto el <a href="#" onclick="return false;">tratamiento de mis datos personales</a> por parte de DigiWeb. Mis datos serán usados únicamente para gestionar mi proyecto web y no serán cedidos a terceros.</span>
+        </label>
+      </div>
+
+      <button type="submit" class="btn-submit">Enviar y reservar mi lugar →</button>
+    </div>
+
+    <div class="success-msg" id="successMsg">
+      <span class="checkmark">✅</span>
+      <h3>¡Formulario recibido!</h3>
+      <p>Gracias por confiar en DigiWeb.<br>Te escribiré por WhatsApp en las próximas 24 horas con los datos de pago y empezamos juntas.<br><br>¡Pronto tendrás tu web lista! ✨</p>
+    </div>
+
+  </form>
+</div>
+
+<script>
+  const planData = {
+    plan1: { price: '350€', name: 'Landing Page', split: 'Inicio: 175€  ·  Entrega: 175€' },
+    plan2: { price: '500€', name: 'Web Corporativa', split: 'Inicio: 250€  ·  Entrega: 250€' },
+  };
+
+  document.querySelectorAll('input[name="plan"]').forEach(r => {
+    r.addEventListener('change', () => {
+      const d = planData[r.id];
+      if (d) {
+        document.getElementById('priceDisplay').textContent = d.price;
+        document.getElementById('planDisplay').textContent = d.name;
+        document.getElementById('splitDisplay').textContent = d.split;
+      }
+    });
+  });
+
+  function handleFiles(input) {
+    const list = document.getElementById('fileList');
+    list.innerHTML = Array.from(input.files).map(f => `✓ ${f.name}`).join('<br>');
+  }
+
+  // ✅ Netlify maneja el submit — solo mostramos el mensaje de éxito
+  document.getElementById('mainForm').addEventListener('submit', function(e) {
+    // NO hacemos e.preventDefault() — dejamos que Netlify procese el envío
+    // Pero sí mostramos el mensaje de éxito localmente
+    setTimeout(() => {
+      document.getElementById('mainForm').style.display = 'none';
+      document.getElementById('successMsg').style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 500);
+  });
+</script>
+</body>
+</html>
