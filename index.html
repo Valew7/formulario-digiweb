@@ -340,25 +340,12 @@
     </div>
   </a>
 
-  <!-- ✅ NETLIFY: name + data-netlify="true" + netlify-honeypot -->
   <form
     id="mainForm"
-    name="digiweb-proyecto"
+    action="https://formspree.io/f/TU_ID_DE_FORMSPREE"
     method="POST"
-    data-netlify="true"
-    netlify-honeypot="bot-field"
-    enctype="multipart/form-data"
   >
 
-    <!-- Campo oculto OBLIGATORIO para Netlify -->
-    <input type="hidden" name="form-name" value="digiweb-proyecto">
-
-    <!-- Honeypot anti-spam (oculto) -->
-    <p style="display:none">
-      <label>No llenar: <input name="bot-field"></label>
-    </p>
-
-    <!-- PASO 1: PLAN -->
     <div class="step">
       <div class="step-label">
         <div class="step-num">1</div>
@@ -387,7 +374,7 @@
         </div>
 
         <div class="plan-card">
-          <input type="radio" name="plan" id="plan2" value="Web Corporativa — 500€">
+          <input type="radio" name="plan" id="plan2" value="Web Corporativa — 570€">
           <label for="plan2">
             <div class="plan-preview corporativa">
               <div class="corp-sidebar">
@@ -421,7 +408,6 @@
 
     <hr class="divider">
 
-    <!-- PASO 2: DATOS -->
     <div class="step">
       <div class="step-label">
         <div class="step-num">2</div>
@@ -446,7 +432,7 @@
         </div>
         <div class="field">
           <label>Email</label>
-          <input type="email" name="email" placeholder="hola@tunegocio.com">
+          <input type="email" name="_replyto" placeholder="hola@tunegocio.com">
         </div>
       </div>
 
@@ -476,7 +462,6 @@
 
     <hr class="divider">
 
-    <!-- PASO 3: CONTENIDO -->
     <div class="step">
       <div class="step-label">
         <div class="step-num">3</div>
@@ -491,56 +476,20 @@
 
       <div class="field">
         <label>¿Qué servicios o productos ofreces? <span class="req">*</span></label>
-        <textarea name="servicios" style="min-height: 110px;" placeholder="Un servicio por línea:&#10;- Limpieza facial profunda&#10;- Tratamiento anti-edad&#10;- Masaje relajante" required></textarea>
+        <textarea name="servicios" style="min-height: 110px;" placeholder="Un servicio por línea" required></textarea>
       </div>
 
       <div class="field">
         <label>Sobre ti o tu negocio</label>
-        <textarea name="sobre_ti" placeholder="Tu historia, experiencia, por qué elegirte, garantías..."></textarea>
-      </div>
-
-      <div class="field">
-        <label>Redes sociales o web actual</label>
-        <input type="text" name="redes" placeholder="@tunegocio en Instagram / www.tunegocio.com">
+        <textarea name="sobre_ti" placeholder="Tu historia, experiencia..."></textarea>
       </div>
     </div>
 
     <hr class="divider">
 
-    <!-- PASO 4: FOTOS -->
     <div class="step">
       <div class="step-label">
         <div class="step-num">4</div>
-        <div class="step-title">Fotos e imágenes</div>
-      </div>
-
-      <div class="field">
-        <a class="drive-zone" href="https://drive.google.com/drive/folders/134hfFOx0eVe33LChsVduhS7WLdUdDqho?usp=sharing" target="_blank" rel="noopener">
-          <div class="up-icon">📁</div>
-          <strong>Subir fotos al Google Drive (crear carpeta con nombre de tu negocio)</strong>
-          <p>Haz clic aquí · Sube logo, fotos del negocio, de ti o tus servicios<br>JPG, PNG — cualquier tamaño</p>
-          <div class="drive-badge">Abrir Drive →</div>
-        </a>
-        <p class="hint">⚠️ Si no tienes fotos aún, indícalo abajo y usaré imágenes profesionales gratuitas.</p>
-      </div>
-
-      <div class="field">
-        <label>¿Sin fotos? Describe qué imágenes necesitas</label>
-        <textarea name="descripcion_imagenes" placeholder="Ej: Clínica moderna, mujer recibiendo masaje, ambiente relajante y luminoso..."></textarea>
-      </div>
-
-      <div class="field">
-        <label>Colores de tu marca</label>
-        <input type="text" name="colores" placeholder="Ej: Rosa nude y dorado / Azul marino y blanco...">
-      </div>
-    </div>
-
-    <hr class="divider">
-
-    <!-- PASO 5: ESTILO -->
-    <div class="step">
-      <div class="step-label">
-        <div class="step-num">5</div>
         <div class="step-title">Estilo de diseño</div>
       </div>
 
@@ -550,98 +499,20 @@
             <input type="radio" name="estilo" id="s1" value="Minimalista">
             <label for="s1">
               <div class="style-preview minimal">Clean & Simple</div>
-              <div class="style-meta">
-                <div class="style-name">Minimalista</div>
-                <div class="style-desc">Elegante, limpio, espacio en blanco</div>
-              </div>
+              <div class="style-meta"><div class="style-name">Minimalista</div></div>
             </label>
           </div>
-
           <div class="style-card">
             <input type="radio" name="estilo" id="s2" value="Moderno Bold">
             <label for="s2">
               <div class="style-preview bold">BOLD & STRONG</div>
-              <div class="style-meta">
-                <div class="style-name">Moderno & Bold</div>
-                <div class="style-desc">Tipografía grande, oscuro, impactante</div>
-              </div>
-            </label>
-          </div>
-
-          <div class="style-card">
-            <input type="radio" name="estilo" id="s3" value="Colorido Vibrante">
-            <label for="s3">
-              <div class="style-preview colorful">Vibrant & Fun</div>
-              <div class="style-meta">
-                <div class="style-name">Colorido & Vibrante</div>
-                <div class="style-desc">Alegre, lleno de color, juvenil</div>
-              </div>
-            </label>
-          </div>
-
-          <div class="style-card">
-            <input type="radio" name="estilo" id="s4" value="Elegante Lujoso">
-            <label for="s4">
-              <div class="style-preview elegant">Luxury Feel</div>
-              <div class="style-meta">
-                <div class="style-name">Elegante & Lujoso</div>
-                <div class="style-desc">Oscuro, sofisticado, premium</div>
-              </div>
-            </label>
-          </div>
-
-          <div class="style-card">
-            <input type="radio" name="estilo" id="s5" value="Degradado Moderno">
-            <label for="s5">
-              <div class="style-preview modern">Modern Gradient</div>
-              <div class="style-meta">
-                <div class="style-name">Degradado Moderno</div>
-                <div class="style-desc">Gradientes suaves, fresco, tech</div>
-              </div>
+              <div class="style-meta"><div class="style-name">Moderno & Bold</div></div>
             </label>
           </div>
         </div>
-        <p class="hint" style="margin-top:12px;">¿Tienes una web de referencia que te guste? Compártela abajo.</p>
-      </div>
-
-      <div class="field">
-        <label>Web de referencia o inspiración</label>
-        <input type="text" name="referencia" placeholder="Ej: www.ejemplo.com — me gusta su estilo y colores...">
-      </div>
-
-      <div class="field">
-        <label>Notas adicionales</label>
-        <textarea name="notas" placeholder="Cualquier detalle, duda o pedido especial para tu proyecto..."></textarea>
       </div>
     </div>
 
-    <hr class="divider">
-
-    <!-- PASO 6: PAGO -->
-    <div class="step">
-      <div class="step-label">
-        <div class="step-num">6</div>
-        <div class="step-title">Método de pago</div>
-      </div>
-
-      <p style="color:var(--muted); font-size:14px; font-weight:300; margin-bottom:18px; line-height:1.6;">
-        El proyecto se paga en 2 partes: <strong style="color:var(--text); font-weight:600;">50% para iniciar</strong> y <strong style="color:var(--text); font-weight:600;">50% al entregar.</strong><br>
-        Los datos de pago te los envío por WhatsApp al confirmar.
-      </p>
-
-      <div class="wise-card">
-        <div class="wise-logo">W</div>
-        <div class="wise-info">
-          <strong>Wise (TransferWise)</strong>
-          <p>Transferencia internacional en euros · Comisiones mínimas · Llega en 1–2 días · Muy popular en España y Europa</p>
-        </div>
-        <div class="wise-badge">Recomendado</div>
-      </div>
-
-      <p class="hint" style="margin-top:12px;">¿Prefieres otro método? Indícalo en las notas o escríbeme directamente por WhatsApp.</p>
-    </div>
-
-    <!-- SUBMIT -->
     <div class="submit-area">
       <h3>¡Todo listo! 🚀</h3>
       <p>Te confirmo por WhatsApp en menos de 24 horas.</p>
@@ -655,26 +526,26 @@
       <div class="gdpr-check">
         <label class="gdpr-label">
           <input type="checkbox" name="acepta_datos" required>
-          <span>He leído y acepto el <a href="#" onclick="return false;">tratamiento de mis datos personales</a> por parte de DigiWeb. Mis datos serán usados únicamente para gestionar mi proyecto web y no serán cedidos a terceros.</span>
+          <span>Acepto el tratamiento de mis datos personales por DigiWeb.</span>
         </label>
       </div>
 
       <button type="submit" class="btn-submit">Enviar y reservar mi lugar →</button>
     </div>
 
-    <div class="success-msg" id="successMsg">
-      <span class="checkmark">✅</span>
-      <h3>¡Formulario recibido!</h3>
-      <p>Gracias por confiar en DigiWeb.<br>Te escribiré por WhatsApp en las próximas 24 horas con los datos de pago y empezamos juntas.<br><br>¡Pronto tendrás tu web lista! ✨</p>
-    </div>
-
   </form>
+
+  <div class="success-msg" id="successMsg">
+    <span class="checkmark">✅</span>
+    <h3>¡Formulario recibido!</h3>
+    <p>Gracias por confiar en DigiWeb.<br>Te escribiré por WhatsApp pronto.<br><br>¡Pronto tendrás tu web lista! ✨</p>
+  </div>
 </div>
 
 <script>
   const planData = {
     plan1: { price: '350€', name: 'Landing Page', split: 'Inicio: 175€  ·  Entrega: 175€' },
-    plan2: { price: '500€', name: 'Web Corporativa', split: 'Inicio: 250€  ·  Entrega: 250€' },
+    plan2: { price: '570€', name: 'Web Corporativa', split: 'Inicio: 285€  ·  Entrega: 285€' },
   };
 
   document.querySelectorAll('input[name="plan"]').forEach(r => {
@@ -688,20 +559,25 @@
     });
   });
 
-  function handleFiles(input) {
-    const list = document.getElementById('fileList');
-    list.innerHTML = Array.from(input.files).map(f => `✓ ${f.name}`).join('<br>');
-  }
-
-  // ✅ Netlify maneja el submit — solo mostramos el mensaje de éxito
-  document.getElementById('mainForm').addEventListener('submit', function(e) {
-    // NO hacemos e.preventDefault() — dejamos que Netlify procese el envío
-    // Pero sí mostramos el mensaje de éxito localmente
-    setTimeout(() => {
-      document.getElementById('mainForm').style.display = 'none';
-      document.getElementById('successMsg').style.display = 'block';
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }, 500);
+  // Manejo de Formspree sin recargar la página
+  const form = document.getElementById('mainForm');
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const data = new FormData(form);
+    
+    fetch(form.action, {
+      method: 'POST',
+      body: data,
+      headers: { 'Accept': 'application/json' }
+    }).then(response => {
+      if (response.ok) {
+        form.style.display = 'none';
+        document.getElementById('successMsg').style.display = 'block';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        alert("Ocurrió un error. Por favor intenta de nuevo.");
+      }
+    });
   });
 </script>
 </body>
